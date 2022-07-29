@@ -58,3 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "solidus", "~> 3.1"
 gem 'solidus_auth_devise'
 gem 'solidus_paypal_commerce_platform'
+
+gem 'solidus_i18n', '~> 2.0'
+gem 'rails-i18n'
+gem 'kaminari-i18n', '~> 0.5.0'
