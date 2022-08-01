@@ -20,4 +20,12 @@ class SolidusPay::PaymentMethod < Spree::PaymentMethod
       supports?(source) && source.reusable?
     end
   end
+
+  def authorize(money, source, options = {})
+    gateway.authorize(money, source.auth_token, options)
+  end
+
+  def purchase(money, source, options = {})
+    gateway.purchase(money, source.auth_token, options)
+  end
 end
