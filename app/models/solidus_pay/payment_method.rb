@@ -1,4 +1,10 @@
 class SolidusPay::PaymentMethod < Spree::PaymentMethod
+  preference :api_key, :string
+
+  def gateway_class
+    SolidusPay::Gateway
+  end
+
   def payment_source_class
     SolidusPay::Transaction
   end
