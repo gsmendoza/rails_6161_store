@@ -8,6 +8,28 @@ module SolidusPay
       @api_key = options.fetch(:api_key)
     end
 
+    def authorize(money, auth_token, options = {})
+      response = request(
+        :post,
+        "/charges",
+        payload_for_charge(money, auth_token, options).merge(capture: false),
+      )
+
+      if response.success?
+        ActiveMerchant::Billing::Response.new(
+          true,
+          "Transaction Authorized",
+          {},
+          authorization: response.parsed_response['id'],
+        )
+      else
+        ActiveMerchant::Billing::Response.new(
+          false,
+          response.parsed_response['error'],
+        )
+      end
+    end
+
     private
 
     def request(method, uri, body = {})
@@ -21,6 +43,16 @@ module SolidusPay
         },
         body: body.to_json,
       )
+    end
+
+    def payload_for_charge(money, auth_token, options = {})
+      {
+        auth_token: auth_token,
+        amount: money,
+        currency: options[:currency],
+        description: "Payment #{options[:order_id]}",
+        billing_address: options[:billing_address],
+      }
     end
   end
 end
