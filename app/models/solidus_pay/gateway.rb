@@ -30,6 +30,28 @@ module SolidusPay
       end
     end
 
+    def purchase(money, auth_token, options = {})
+      response = request(
+        :post,
+        "/charges",
+        payload_for_charge(money, auth_token, options).merge(capture: true),
+      )
+
+      if response.success?
+        ActiveMerchant::Billing::Response.new(
+          true,
+          "Transaction Purchased",
+          {},
+          authorization: response.parsed_response['id'],
+        )
+      else
+        ActiveMerchant::Billing::Response.new(
+          false,
+          response.parsed_response['error'],
+        )
+      end
+    end
+
     private
 
     def request(method, uri, body = {})
