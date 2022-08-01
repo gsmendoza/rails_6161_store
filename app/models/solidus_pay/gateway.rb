@@ -52,6 +52,53 @@ module SolidusPay
       end
     end
 
+    def capture(money, transaction_id, options = {})
+      response = request(
+        :post,
+        "/charges/#{transaction_id}/capture",
+        { amount: money },
+      )
+
+      if response.success?
+        ActiveMerchant::Billing::Response.new(true, "Transaction Captured")
+      else
+        ActiveMerchant::Billing::Response.new(
+          false,
+          response.parsed_response['error'],
+        )
+      end
+    end
+
+    def void(transaction_id, options = {})
+      response = request(:post, "/charges/#{transaction_id}/refunds")
+
+      if response.success?
+        ActiveMerchant::Billing::Response.new(true, "Transaction Voided")
+      else
+        ActiveMerchant::Billing::Response.new(
+          false,
+          response.parsed_response['error'],
+        )
+      end
+    end
+
+    def credit(money, transaction_id, options = {})
+      response = request(
+        :post,
+        "/charges/#{transaction_id}/credit",
+        { amount: money },
+      )
+
+      if response.success?
+        ActiveMerchant::Billing::Response.new(true, "Transaction Credited")
+      else
+        ActiveMerchant::Billing::Response.new(
+          false,
+          response.parsed_response['error'],
+        )
+      end
+    end
+
     private
 
     def request(method, uri, body = {})
