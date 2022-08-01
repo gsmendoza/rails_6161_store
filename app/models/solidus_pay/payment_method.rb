@@ -28,4 +28,10 @@ class SolidusPay::PaymentMethod < Spree::PaymentMethod
   def purchase(money, source, options = {})
     gateway.purchase(money, source.auth_token, options)
   end
+
+  def try_void(payment)
+    return false if payment.completed?
+
+    void(payment.source.transaction_id)
+  end
 end
