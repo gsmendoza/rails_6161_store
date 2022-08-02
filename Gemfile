@@ -59,3 +59,5 @@ gem "solidus_core", "~> 3.1"
 gem "solidus_backend", "~> 3.1"
 gem "solidus_api", "~> 3.1"
 gem "solidus_sample", "~> 3.1"
+gem 'solidus_auth_devise'
+gem 'solidus_paypal_commerce_platform'
