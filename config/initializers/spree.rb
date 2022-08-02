@@ -95,4 +95,4 @@ Spree.user_class = "Spree::LegacyUser"
 #
 # Spree::UserLastUrlStorer.rules << 'Spree::UserLastUrlStorer::Rules::AuthenticationRule'
 
-Spree::PermittedAttributes.checkout_payment_attributes << :auth_token
+Spree::PermittedAttributes.source_attributes << :auth_token
