@@ -4,6 +4,7 @@
 # Solidus version defaults for preferences that are not overridden
 Spree.load_defaults '3.1.7'
 
+require_relative Rails.root.join('lib/solidus_starter_frontend/config')
 Spree.config do |config|
   # Core:
   # Default currency for new sites
