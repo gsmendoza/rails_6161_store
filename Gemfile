@@ -54,3 +54,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "solidus_core", "~> 3.1"
+gem "solidus_backend", "~> 3.1"
+gem "solidus_api", "~> 3.1"
+gem "solidus_sample", "~> 3.1"
