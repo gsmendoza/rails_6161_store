@@ -55,7 +55,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "solidus", "~> 3.2"
 
 # Fixes "LoadError: cannot load such file -- net/smtp" in Ruby 3.1.
 # Needed in order to run 'bin/rails g solidus:install'.
@@ -63,3 +62,29 @@ gem "solidus", "~> 3.2"
 gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
+gem 'solidus_auth_devise'
+
+gem "solidus_core", "~> 3.2"
+gem "solidus_backend", "~> 3.2"
+gem "solidus_api", "~> 3.2"
+gem "solidus_sample", "~> 3.2"
+gem 'canonical-rails'
+gem 'solidus_support'
+gem 'truncate_html'
+gem 'view_component', '~> 2.46'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'apparition', '~> 0.6.0', github: 'twalpole/apparition'
+  gem 'rails-controller-testing', '~> 1.0.5'
+  gem 'rspec-activemodel-mocks', '~> 1.1.0'
+  gem 'capybara-screenshot', '~> 1.0'
+  gem 'database_cleaner', '~> 1.7'
+  gem 'factory_bot', '>= 4.8'
+  gem 'factory_bot_rails'
+  gem 'ffaker', '~> 2.13'
+  gem 'rubocop', '~> 1.0'
+  gem 'rubocop-performance', '~> 1.5'
+  gem 'rubocop-rails', '~> 2.3'
+  gem 'rubocop-rspec', '~> 2.0'
+end
