@@ -56,3 +56,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "solidus", "~> 3.2"
+
+# Fixes "LoadError: cannot load such file -- net/smtp" in Ruby 3.1.
+# Needed in order to run 'bin/rails g solidus:install'.
+# https://stackoverflow.com/a/70500221/65925
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
